@@ -1,0 +1,12 @@
+.tablaDiv {
+    display: none;
+}
+#table_filter label {
+    display: none;
+}
+.btn-pink {
+   background: #ae80b2;
+}
+.btn-pink:hover {
+   background: #8d5f91;
+}
