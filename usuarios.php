@@ -38,8 +38,7 @@ if(!isset($_SESSION['usuario']) and $_SESSION['estado'] != 'Autenticado') {
       </div>
    </nav>
    <div class="container-fluid" id="content">
-      <div class="row mt-5">
-         <div class="col-2"></div>
+      <div class="row mt-5 d-flex justify-content-center">
          <div class="col-sm-3">
             <h3 class="text-primary ">Usuarios</h3>
          </div>
@@ -48,8 +47,9 @@ if(!isset($_SESSION['usuario']) and $_SESSION['estado'] != 'Autenticado') {
                <input type="text" class="busqueda form-control" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="button-addon2" maxlength="50">
             </div>
          </div>
-         <div class="col-2"></div>
-         <div id="mensaje" class="col-12 mt-5">
+      </div>
+      <div id="mensaje" class="row">
+         <div class="col-12 align-self-center">
             <h4 class="text-center text-secondary mt-5">Ingrese búsqueda</h4>
          </div>
       </div>
