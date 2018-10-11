@@ -1,41 +1,21 @@
-//Guardamos el controlador del div con ID mensaje en una variable
 var mensaje = $("#mensaje");
-//Ocultamos el contenedor
 mensaje.hide();
-
-//Cuando el formulario con ID acceso se envíe...
 $("#acceso").submit(function(e){
-	//Evitamos que se envíe por defecto
-	e.preventDefault();
-	//Creamos un FormData con los datos del mismo formulario
-	var formData = new FormData(document.getElementById("acceso"));
-
-	//Llamamos a la función AJAX de jQuery
+	e.preventDefault();//Evitar que se envíe por defecto
+	var formData = new FormData(document.getElementById("acceso"));//obtener datos del form
 	$.ajax({
-		//Definimos la URL del archivo al cual vamos a enviar los datos
-		url: "recursos/acceder.php",
-		//Definimos el tipo de método de envío
-		type: "POST",
-		//Definimos el tipo de datos que vamos a enviar y recibir
-		dataType: "HTML",
-		//Definimos la información que vamos a enviar
-		data: formData,
-		//Deshabilitamos el caché
-		cache: false,
-		//No especificamos el contentType
-		contentType: false,
-		//No permitimos que los datos pasen como un objeto
-		processData: false,
-        success:function(echo){
-            //Una vez que recibimos respuesta
-            //comprobamos si la respuesta no es vacía
+		url: "recursos/acceder.php",//lugar donde se envian datos
+		type: "POST",//Definimos el tipo de método de envío
+		dataType: "HTML",//Definir el tipo de datos que vamos a enviar y recibir
+		data: formData,//Definir la información que vamos a enviar
+		cache: false,//Deshabilitar el caché
+		contentType: false,//No especifir el contentType
+		processData: false,//No permitir que los datos pasen como un objeto
+        success:function(echo){ //Comprobar si la respuesta no es vacía
             if (echo !== "") {
-                //Si hay respuesta (error), mostramos el mensaje
-                mensaje.html(echo);
+                mensaje.html(echo);//Si hay respuesta (error), mostrar el mensaje
                 mensaje.slideDown(500);
             } else if(echo == '') {
-                //Si no hay respuesta, redirecionamos a donde sea necesario
-                //Si está vacío, recarga la página
                 var same = window.location.href;//misma dirección
                 location.replace(same);//redirigir
             }

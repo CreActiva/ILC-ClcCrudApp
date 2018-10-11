@@ -1,12 +1,12 @@
 (function ($) {
    $(document).ready(function() {
       $.ajax({
-         url: 'query.php',
+         url: 'recursos/query.php',
          dataType: 'JSON',
          method: 'GET',
          success: function (respuesta) {
             $.each(respuesta.data, function (i, value) {
-               var fila = '<tr><td>' + value.Certificado + '</td><td>' + value.Apellido + '</td><td>' + value.Nombre + '</td><td>' + value.Email + '</td><td>' + value.Telefono + '</td><td>' + value.Rol + '</td><td>' + value.Cohorte + '</td><td></td></tr>';
+               var fila = '<tr><td>' + value.Certificado + '</td><td>' + value.Nombre + '</td><td>' + value.Apellido + '</td><td>' + value.Email + '</td><td>' + value.Telefono + '</td><td>' + value.Rol + '</td><td>' + value.Cohorte + '</td><td></td></tr>';
                $('tbody').append(fila);
             });
             var dt = $('#table').DataTable({

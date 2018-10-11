@@ -1,16 +1,10 @@
 <?php
-//Reanudamos la sesión
-session_start();
-//Requerimos los datos de la conexión a la BBDD
-require('../conexion.php');
-//Des-establecemos todas las sesiones
-unset($_SESSION);
-//Destruimos las sesiones
-session_destroy();  
-//Cerramos la conexión con la base de datos
-mysqli_close($conexion);
-//Redireccionamos a el index
-header("Location: ../");
+session_start();//Reanudar la sesión
+require('conexion.php');//Requerir datos de la conexión a la BBDD
+unset($_SESSION);//Des-establecer todas las sesiones
+session_destroy();//Destruir las sesiones  
+mysqli_close($conexion);//Cerrar la conexión con la base de datos
+header("Location: ../");//Redireccionamos a el index
 die();
 ?>
 <!DOCTYPE html>

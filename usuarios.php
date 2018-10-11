@@ -1,11 +1,7 @@
 <?php
-//Reanudamos la sesión
-session_start();
-//Comprobamos si el usario está logueado
-//Si no lo está, se le redirecciona al index
-//Si lo está, definimos el botón de cerrar sesión y la duración de la sesión
+session_start();//reanudar sesion
 if(!isset($_SESSION['usuario']) and $_SESSION['estado'] != 'Autenticado') {
-	header('Location: index.php');
+	header('Location: index.php');//usuario no logueado
 } else {
 	$estado = $_SESSION['usuario'];
 	$salir = '<a class="btn btn-pink text-light" href="recursos/salir.php" target="_self" >Cerrar sesión</a>';
@@ -16,6 +12,7 @@ if(!isset($_SESSION['usuario']) and $_SESSION['estado'] != 'Autenticado') {
 <html>
 <head>
    <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    <title>Inicio</title>
    <link rel="stylesheet" href="css/bootstrap.css">
@@ -59,8 +56,8 @@ if(!isset($_SESSION['usuario']) and $_SESSION['estado'] != 'Autenticado') {
                <thead>
                   <tr class="table-primary">
                      <th scope="col">Certificado</th>
-                     <th scope="col">Apellido</th>
                      <th scope="col">Nombre</th>
+                     <th scope="col">Apellido</th>
                      <th scope="col">Email</th>
                      <th scope="col">Teléfono</th>
                      <th scope="col">Rol</th>

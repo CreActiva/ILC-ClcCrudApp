@@ -1,6 +1,6 @@
 <?php	
 ini_set('max_execution_time', 500);//segundos de ejecución de código
-include 'simplexlsx/simplexlsx.class.php';
+include_once 'simplexlsx/simplexlsx.class.php';
 $xlsx = new SimpleXLSX('Usuarios_CLC.xlsx');
 $conn = new PDO("mysql:host=localhost;dbname=ilccampu_usuarios", "ilccampu_ricardo", "APeUo=*@xRX~");
 $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -13,8 +13,9 @@ $stmt->bindParam( 5, $Telefono);
 $stmt->bindParam( 6, $Rol);
 $stmt->bindParam( 7, $Cohorte);
 $i=1;
+$nColumnas = 1694;
 foreach ($xlsx->rows() as $fields) {
-    if($i++ < 1695){
+    if($i++ <= $nColumnas){
         $conn->exec("set names utf8");
         $Certificado = $fields[0];
         $Nombre = $fields[1];

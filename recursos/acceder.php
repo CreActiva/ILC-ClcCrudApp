@@ -1,58 +1,33 @@
 <?php
-	
-//Conectamos a la base de datos
-require('../conexion.php');
-
-//Obtenemos los datos del formulario de acceso
-$userPOST = $_POST["userAcceso"]; 
+require_once('conexion.php');//conectar con bd
+$userPOST = $_POST["userAcceso"];//obtener datos
 $passPOST = $_POST["passAcceso"];
-
-//Filtro anti-XSS
-$userPOST = htmlspecialchars(mysqli_real_escape_string($conexion, $userPOST));
+$userPOST = htmlspecialchars(mysqli_real_escape_string($conexion, $userPOST));//filtrar datos xss
 $passPOST = htmlspecialchars(mysqli_real_escape_string($conexion, $passPOST));
-
-//Definimos la cantidad máxima de caracteres
-//Esta comprobación se tiene en cuenta por si se llegase a modificar el "maxlength" del formulario
-//Los valores deben coincidir con el tamaño máximo de la fila de la base de datos
-$maxCaracteresUsername = "20";
+$maxCaracteresUsername = "40";//Definir longitud
 $maxCaracteresPassword = "60";
-
-//Si los input son de mayor tamaño, se "muere" el resto del código y muestra la respuesta correspondiente
-if(strlen($userPOST) > $maxCaracteresUsername) {
+if(strlen($userPOST) > $maxCaracteresUsername) {//comparando longitud de caracteres
 	die('El nombre de usuario no puede superar los '.$maxCaracteresUsername.' caracteres');
-};
-
-if(strlen($passPOST) > $maxCaracteresPassword) {
+}
+else if(strlen($passPOST) > $maxCaracteresPassword) {//comparando longitud de caracteres
 	die('La contraseña no puede superar los '.$maxCaracteresPassword.' caracteres');
-};
-
-//Pasamos el input del usuario a minúsculas para compararlo después con
-//el campo "usernamelowercase" de la base de datos
-$userPOSTMinusculas = strtolower($userPOST);
-
-//Escribimos la consulta necesaria
-$consulta = "SELECT * FROM usuarios WHERE username='".$userPOSTMinusculas."'";
-
-//Obtenemos los resultados
-$resultado = mysqli_query($conexion, $consulta);
-$datos = mysqli_fetch_array($resultado);
-
-//Guardamos los resultados del nombre de usuario en minúsculas
-//y de la contraseña de la base de datos
-$userBD = $datos['username'];
-$passwordBD = $datos['password'];
-
-//Comprobamos si los datos son correctos
-if($userBD == $userPOSTMinusculas and $passPOST == $passwordBD){
-
-	session_start();
-	$_SESSION['usuario'] = $datos['username'];
-	$_SESSION['estado'] = 'Autenticado';
-
-	/* Sesión iniciada, si se desea, se puede redireccionar desde el servidor */
-
-//Si los datos no son correctos, o están vacíos, muestra un error
-//Además, hay un script que vacía los campos con la clase "acceso" (formulario)
 } else {
-	die ('<script>$(".acceso").val("");</script> Los datos de acceso son incorrectos');
+   $userPOST = strtolower($userPOST);//colocar en minúscula
+   $consulta = "SELECT username,email,password FROM usuarios WHERE username='".$userPOST."'";
+   $resultado = mysqli_query($conexion, $consulta);//consulta
+   $datos = mysqli_fetch_array($resultado);
+   $userBD = $datos['username'];//guardando datos
+   $passwordBD = $datos['password'];
+   $emailBD = $datos['email'];
+   $emailBD = strtolower($emailBD);
+   if(($userBD == $userPOST xor $emailBD == $userPOST) and password_verify($passPOST,$passwordBD)){//no funciona entrar con email
+       session_start();//conectado
+       $_SESSION['usuario'] = $datos['username'];
+       $_SESSION['estado'] = 'Autenticado';
+   } else if ( ($userBD != $userPOST && $emailBD != $userPOST) || $userPOST == "" || $passPOST == "" || password_verify($passPOST,$passwordBD) !== 1 ) { //verificar si hay error
+       die ('<script>$(".acceso").val("");</script>Los datos de acceso son incorrectos');
+   } else { //verificar si hay error y ninguna de las anteriores cumple
+       die('Error');
+   }
+   $conexion->close();
 }
