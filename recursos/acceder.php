@@ -13,19 +13,21 @@ else if(strlen($passPOST) > $maxCaracteresPassword) {//comparando longitud de ca
 	die('La contraseña no puede superar los '.$maxCaracteresPassword.' caracteres');
 } else {
    $userPOST = strtolower($userPOST);//colocar en minúscula
-   $consulta = "SELECT username,email,password FROM usuarios WHERE username='".$userPOST."'";
+   $consulta = "SELECT username,email,password,rol FROM usuarios WHERE username='".$userPOST."'";
    $resultado = mysqli_query($conexion, $consulta);//consulta
    $datos = mysqli_fetch_array($resultado);
    $userBD = $datos['username'];//guardando datos
    $passwordBD = $datos['password'];
    $emailBD = $datos['email'];
    $emailBD = strtolower($emailBD);
+   $rolBD = $datos['rol'];
    if(($userBD == $userPOST xor $emailBD == $userPOST) and password_verify($passPOST,$passwordBD)){//no funciona entrar con email
-       session_start();//conectado
-       $_SESSION['usuario'] = $datos['username'];
-       $_SESSION['estado'] = 'Autenticado';
+      session_start();//conectado
+      $_SESSION['usuario'] = $datos['username'];
+      $_SESSION['estado'] = 'Autenticado';
+      $_SESSION['rol'] = $datos['rol'];
    } else if ( ($userBD != $userPOST && $emailBD != $userPOST) || $userPOST == "" || $passPOST == "" || password_verify($passPOST,$passwordBD) !== 1 ) { //verificar si hay error
-       die ('<script>$(".acceso").val("");</script>Los datos de acceso son incorrectos');
+      die ('<script>$(".acceso").val("");</script>Los datos de acceso son incorrectos');
    } else { //verificar si hay error y ninguna de las anteriores cumple
        die('Error');
    }

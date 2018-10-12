@@ -11,7 +11,7 @@ CREATE TABLE usuarios (
 	PRIMARY KEY(ID_Usuario),
     UNIQUE KEY(username,email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;
-INSERT INTO `usuarios`(`username`, `email`, `password`, `rol`) VALUES ('miguel','mpena.creactiva@gmail.com','$2y$12$aHvkbXmIYr1NVm4CYQB0RO3sRpGqJ6klWmzTtKg1l9iBkjLIBFtem','admin'),('samuel','coachsamuelg@gmail.com','$2y$12$xaz3UWNIAC6Ef9etwNGU.uCjXPwxsELriqCDNzLTOK0GpcNinmQwm','admin'),('ricardo','ingoriere@gmail.com','$2y$12$eYG.FMTDFXgR5uC.fvjEE.C8LfpzODXOjTrIdlt1hM6nwPECBAoK6','admin'),('francisco','fsanchez.creactiva@gmail.com','$2y$12$hgPboQ0JdfItiWED.Qy41.0ooZLW9qfR.wKBuMzS6TwUb2w7UstJu','admin'),('fernando','fernandocel@gmail.com','$2y$12$Z4K7D0HAdQCic0hUnnIeyOzP5SNnii222ONf6JMTdbndUKmYsiS8e','admin');
+INSERT INTO `usuarios`(`username`, `email`, `password`, `rol`) VALUES ('miguel','mpena.creactiva@gmail.com','$2y$12$aHvkbXmIYr1NVm4CYQB0RO3sRpGqJ6klWmzTtKg1l9iBkjLIBFtem','admin'),('samuel','coachsamuelg@gmail.com','$2y$12$xaz3UWNIAC6Ef9etwNGU.uCjXPwxsELriqCDNzLTOK0GpcNinmQwm','admin'),('ricardo','ingoriere@gmail.com','$2y$12$eYG.FMTDFXgR5uC.fvjEE.C8LfpzODXOjTrIdlt1hM6nwPECBAoK6','admin'),('francisco','fsanchez.creactiva@gmail.com','$2y$12$hgPboQ0JdfItiWED.Qy41.0ooZLW9qfR.wKBuMzS6TwUb2w7UstJu','admin'),('fernando','fernandocel@gmail.com','$2y$12$Z4K7D0HAdQCic0hUnnIeyOzP5SNnii222ONf6JMTdbndUKmYsiS8e','admin'),('irwil','irodriguez.creactiva@gmail.com','$2y$12$jIhM7vmmkEoCXB8J0aHwIOp3/FGw9DKnNU9r5cCqHzhx8cMyeQTH6','user');
 DROP TABLE IF EXISTS Usuarios_Clc;
 CREATE TABLE IF NOT EXISTS Usuarios_Clc(
     ID int NOT NULL AUTO_INCREMENT,
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS Usuarios_Clc(
     Nombre varchar(45),
     Email varchar(100),
     Telefono varchar(100),
-    Rol varchar(200),
+    Rol varchar(50),
     Cohorte varchar(100),
     Observacion varchar(200),
     PRIMARY KEY(ID),

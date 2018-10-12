@@ -14,7 +14,7 @@ $stmt->bindParam( 6, $Rol);
 $stmt->bindParam( 7, $Cohorte);
 $i=1;
 $nColumnas = 1694;
-foreach ($xlsx->rows() as $fields) {
+foreach ($xlsx->rows() as $fields){
     if($i++ <= $nColumnas){
         $conn->exec("set names utf8");
         $Certificado = $fields[0];

@@ -8,6 +8,8 @@ require_once('recursos/sesiones.php');
 <head>
    <meta charset="utf-8">
    <title>Acceso</title>
+   <meta name="robots" content="noindex">
+   <meta name="googlebot" content="noindex">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="css/bootstrap.css">

@@ -1,12 +1,13 @@
 <?php
 session_start();//reanudar sesion
 if(!isset($_SESSION['usuario']) and $_SESSION['estado'] != 'Autenticado') {
-	header('Location: index.php');//usuario no logueado
+   header('Location: index.php');//usuario no logueado
 } else {
-	$estado = $_SESSION['usuario'];
-	$salir = '<a class="btn btn-pink text-light" href="recursos/salir.php" target="_self" >Cerrar sesión</a>';
-	require('recursos/sesiones.php');
-};
+   $usuario = $_SESSION['usuario'];
+   $rol = $_SESSION['rol']; 
+   $salir = '<a class="btn btn-pink text-light" href="recursos/salir.php" target="_self" >Cerrar sesión</a>';
+   require('recursos/sesiones.php');
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,6 +16,8 @@ if(!isset($_SESSION['usuario']) and $_SESSION['estado'] != 'Autenticado') {
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    <title>Inicio</title>
+   <meta name="robots" content="noindex">
+   <meta name="googlebot" content="noindex">
    <link rel="stylesheet" href="css/bootstrap.css">
    <link rel="stylesheet" href="css/datatables.min.css">
    <link rel="stylesheet" href="css/usuarios.css">
@@ -25,7 +28,7 @@ if(!isset($_SESSION['usuario']) and $_SESSION['estado'] != 'Autenticado') {
          <ul class="navbar-nav mr-auto col-sm-3 col-md-3">
             <li class="nav-item active">
                <h4 class="text-light text-capitalize">Hola,
-                  <?php echo $estado; ?>
+                  <?php echo $usuario;?>
                </h4>
             </li>
          </ul>
@@ -47,7 +50,7 @@ if(!isset($_SESSION['usuario']) and $_SESSION['estado'] != 'Autenticado') {
       </div>
       <div id="mensaje" class="row">
          <div class="col-12 align-self-center">
-            <h4 class="text-center text-secondary mt-5">Ingrese búsqueda</h4>
+            <h4 class="text-center text-secondary mt-5">Ingresar búsqueda</h4>
          </div>
       </div>
       <div class="row tablaContent mb-5">
@@ -63,7 +66,7 @@ if(!isset($_SESSION['usuario']) and $_SESSION['estado'] != 'Autenticado') {
                      <th scope="col">Rol</th>
                      <th scope="col">Cohorte</th>
                      <th scope="col">Observación</th>
-                  </tr>
+                     <?php ($rol == 'admin')? print '<th scope="col">Acción</th>': '';?>
                </thead>
                <tbody></tbody>
             </table>

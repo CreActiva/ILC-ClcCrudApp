@@ -5,8 +5,12 @@
          dataType: 'JSON',
          method: 'GET',
          success: function (respuesta) {
+            var flag;
+            (respuesta.rol=='admin')? flag=true : flag=false;
             $.each(respuesta.data, function (i, value) {
-               var fila = '<tr><td>' + value.Certificado + '</td><td>' + value.Nombre + '</td><td>' + value.Apellido + '</td><td>' + value.Email + '</td><td>' + value.Telefono + '</td><td>' + value.Rol + '</td><td>' + value.Cohorte + '</td><td></td></tr>';
+               var fila = '<tr><td>'+ value.Certificado + '</td><td>' + value.Nombre + '</td><td>' + value.Apellido + '</td><td>' + value.Email + '</td><td>' + value.Telefono + '</td><td>' + value.Rol + '</td><td>' + value.Cohorte + '</td><td></td>';
+               fila += (flag)?'<td><a href="editar.php" class="btn btn-pink text-light">Editar</a></td>':'';
+               fila += '</tr>';
                $('tbody').append(fila);
             });
             var dt = $('#table').DataTable({
