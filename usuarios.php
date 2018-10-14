@@ -38,15 +38,19 @@ if(!isset($_SESSION['usuario']) and $_SESSION['estado'] != 'Autenticado') {
       </div>
    </nav>
    <div class="container-fluid" id="content">
-      <div class="row mt-5 d-flex justify-content-center">
-         <div class="col-sm-3">
-            <h3 class="text-primary ">Usuarios</h3>
-         </div>
-         <div class="col-sm-4">
+      <div class="row mt-5 d-flex  justify-content-center">
+         <div class="col-sm-6">
             <div class="input-group mb-3">
-               <input type="text" class="busqueda form-control" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="button-addon2" maxlength="50">
+            <label for="busqueda" class="mr-4"><h3 class="text-primary ">Usuarios</h3></label>
+               <input id="busqueda" type="text" class="busqueda form-control" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="button-addon2" maxlength="50">
             </div>
          </div>
+         <?php 
+         if($rol == 'admin'){
+         echo
+         '<div class="col-sm-3"><button class="btn btn-primary" id="agregar">+ Agregar nuevo usuario</button></div>';
+         }
+         ?>
       </div>
       <div id="mensaje" class="row">
          <div class="col-12 align-self-center">

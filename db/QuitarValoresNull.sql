@@ -1,0 +1,1 @@
+UPDATE Usuarios_Clc SET Observacion='' WHERE Observacion IS NULL;

@@ -9,13 +9,6 @@ if($rol !== 'admin' || !isset($_SESSION['usuario']) || $_SESSION['estado'] != 'A
    $salir = '<a class="btn btn-pink text-light" href="recursos/salir.php" target="_self" >Cerrar sesión</a>';
    require('recursos/sesiones.php');
    $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[SERVER_NAME]".($_SERVER['SERVER_NAME'] == 'localhost')?'/clcCRUDapp':'';
-   $nombre = $_GET['nombre'];
-   $apellido = $_GET['apellido'];
-   $userRol = $_GET['userRol'];
-   $telefono = $_GET['telefono'];
-   $email = $_GET['email'];
-   $cohorte = $_GET['cohorte'];
-   $observacion = $_GET['observacion'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,12 +33,14 @@ if($rol !== 'admin' || !isset($_SESSION['usuario']) || $_SESSION['estado'] != 'A
                </h4>
             </li>
          </ul>
-            <?php echo $salir; ?>
+         <?php echo $salir; ?>
       </div>
    </nav>
    <div class="container">
       <div class="row mt-5">
-         <div class="col-10"><h3>Editar Usuario</h3></div>
+         <div class="col-10">
+            <h3>Agregar Usuario</h3>
+         </div>
          <div class="col-2"><a href="<?php echo $actual_link?>" class="btn btn-primary w-100">Atras</a></div>
          <div class="w-100"></div>
          <div class="col-12">
@@ -53,11 +48,11 @@ if($rol !== 'admin' || !isset($_SESSION['usuario']) || $_SESSION['estado'] != 'A
                <div class="form-row">
                   <div class="col-md-4 mb-3">
                      <label for="nombre">Nombre</label>
-                     <input type="text" class="form-control" id="nombre" placeholder="Nombre" value="<?php echo $nombre; ?>" required maxlength="45">
+                     <input type="text" class="form-control" id="nombre" placeholder="Nombre" required maxlength="45">
                   </div>
-                  <div class="col-md-4 mb-3">   
+                  <div class="col-md-4 mb-3">
                      <label for="apellido">Apellido</label>
-                     <input type="text" class="form-control" id="apellido" placeholder="Apellido" value="<?php echo $apellido; ?>" required maxlength="45">
+                     <input type="text" class="form-control" id="apellido" placeholder="Apellido" required maxlength="45">
                   </div>
                   <div class="col-md-4 mb-3">
                      <label for="rol">Rol</label>
@@ -70,7 +65,7 @@ if($rol !== 'admin' || !isset($_SESSION['usuario']) || $_SESSION['estado'] != 'A
                <div class="form-row">
                   <div class="col-md-4 mb-3">
                      <label for="telefono">Teléfono</label>
-                     <input type="text" class="form-control" id="telefono" placeholder="Teléfono" value="<?php echo $telefono; ?>" required maxlength="100">
+                     <input type="text" class="form-control" id="telefono" placeholder="Teléfono" required maxlength="100">
                   </div>
                   <div class="col-md-8 mb-3">
                      <label for="email">Email</label>
@@ -78,17 +73,17 @@ if($rol !== 'admin' || !isset($_SESSION['usuario']) || $_SESSION['estado'] != 'A
                         <div class="input-group-prepend">
                            <span class="input-group-text" id="inputGroupPrepend">@</span>
                         </div>
-                        <input type="email" class="form-control" id="email" placeholder="Email" required maxlength="100" value="<?php echo $email; ?>">
+                        <input type="email" class="form-control" id="email" placeholder="Email" required maxlength="100">
                      </div>
                   </div>
                </div>
                <div class="form-row">
                   <label for="cohorte">Cohorte</label>
-                  <input type="text" value="<?php echo $cohorte; ?>" class="form-control" id="cohorte" placeholder="Cohorte" required/>
+                  <input type="text" class="form-control" id="cohorte" placeholder="Cohorte" required />
                </div>
                <div class="form-row">
                   <label for="observacion">Observación</label>
-                  <textarea type="text" value="<?php echo $observacion; ?>" class="form-control" id="observacion" placeholder="Observación" maxlength="200" ></textarea>
+                  <textarea type="text" class="form-control" id="observacion" placeholder="Observación" maxlength="200"></textarea>
                </div>
                <div class="form-group">
                   <div class="form-check">
@@ -96,24 +91,24 @@ if($rol !== 'admin' || !isset($_SESSION['usuario']) || $_SESSION['estado'] != 'A
                      <label class="form-check-label" for="gridCheck">Verifique antes de editar</label>
                   </div>
                </div>
-               <button type="submit" class="btn btn-primary w-100" data-target="#myModal">Editar</button> 
+               <button type="submit" class="btn btn-primary w-100" data-target="#myModal">Editar</button>
                <div id="myModal" class="modal" tabindex="-1" role="dialog">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Estado de edición</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+                  <div class="modal-dialog" role="document">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                           <h5 class="modal-title">Estado de edición</h5>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                           </button>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                     </div>
                   </div>
-                  <div class="modal-body">
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+               </div>
             </form>
          </div>
       </div>
@@ -128,7 +123,7 @@ if($rol !== 'admin' || !isset($_SESSION['usuario']) || $_SESSION['estado'] != 'A
 </nav>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/editar.js"></script>
+<script src="js/agregar.js"></script>
 </html>
 <?php
 }
