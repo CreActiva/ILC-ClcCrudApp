@@ -1,4 +1,5 @@
 (function($){
+
 $('#myModal').modal('hide');
 $('#editar').submit(function(e){
    e.preventDefault();

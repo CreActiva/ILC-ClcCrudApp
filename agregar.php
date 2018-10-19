@@ -8,7 +8,6 @@ if($rol !== 'admin' || !isset($_SESSION['usuario']) || $_SESSION['estado'] != 'A
    $rol = $_SESSION['rol']; 
    $salir = '<a class="btn btn-pink text-light" href="recursos/salir.php" target="_self" >Cerrar sesión</a>';
    require('recursos/sesiones.php');
-   $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[SERVER_NAME]".($_SERVER['SERVER_NAME'] == 'localhost')?'/clcCRUDapp':'';
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,7 +40,9 @@ if($rol !== 'admin' || !isset($_SESSION['usuario']) || $_SESSION['estado'] != 'A
          <div class="col-10">
             <h3>Agregar Usuario</h3>
          </div>
-         <div class="col-2"><a href="<?php echo $actual_link?>" class="btn btn-primary w-100">Atras</a></div>
+         <!--Cambiar URL-->
+         <div class="col-2"><a href="http://usuarios.ilccampus.com/" class="btn btn-primary text-light w-100">Atras</a></div><!--Cambiar URL-->
+         
          <div class="w-100"></div>
          <div class="col-12">
             <form id="editar" action="">
@@ -57,15 +58,15 @@ if($rol !== 'admin' || !isset($_SESSION['usuario']) || $_SESSION['estado'] != 'A
                   <div class="col-md-4 mb-3">
                      <label for="rol">Rol</label>
                      <select id="rol" class="custom-select mb-3">
-                        <option selected value="Clc">Clc</option>
-                        <option value="Ecoach">Ecoach</option>
+                        <option selected value="CLC">CLC</option>
+                        <option value="ECOACH">ECOACH</option>
                      </select>
                   </div>
                </div>
                <div class="form-row">
                   <div class="col-md-4 mb-3">
                      <label for="telefono">Teléfono</label>
-                     <input type="text" class="form-control" id="telefono" placeholder="Teléfono" required maxlength="100">
+                     <input type="text" class="form-control" id="telefono" placeholder="Teléfono" maxlength="100">
                   </div>
                   <div class="col-md-8 mb-3">
                      <label for="email">Email</label>
@@ -88,15 +89,15 @@ if($rol !== 'admin' || !isset($_SESSION['usuario']) || $_SESSION['estado'] != 'A
                <div class="form-group">
                   <div class="form-check">
                      <input class="form-check-input" type="checkbox" id="gridCheck" required>
-                     <label class="form-check-label" for="gridCheck">Verifique antes de editar</label>
+                     <label class="form-check-label" for="gridCheck">Verifique antes de agregar</label>
                   </div>
                </div>
-               <button type="submit" class="btn btn-primary w-100" data-target="#myModal">Editar</button>
+               <button type="submit" class="btn btn-primary w-100" data-target="#myModal">Agregar</button>
                <div id="myModal" class="modal" tabindex="-1" role="dialog">
                   <div class="modal-dialog" role="document">
                      <div class="modal-content">
                         <div class="modal-header">
-                           <h5 class="modal-title">Estado de edición</h5>
+                           <h5 class="modal-title">Estado</h5>
                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                            </button>
@@ -114,7 +115,7 @@ if($rol !== 'admin' || !isset($_SESSION['usuario']) || $_SESSION['estado'] != 'A
       </div>
    </div>
 </body>
-<nav id="footer" class="navbar fixed-bottom navbar-light bg-primary">
+<nav id="footer" class="navbar mt-5 navbar-light bg-primary">
    <div class="col-12 text-center">
       <div class="tiny-footer text-light p-2">
          © 2018 Copyright:<a class="text-light" href="http://ilcacademy.com"> ILC ACADEMY</a>

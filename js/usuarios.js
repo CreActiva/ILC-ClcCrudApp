@@ -31,7 +31,8 @@ $(document).ready(function() {
          $('.busqueda').keyup(function() {//Condicionales de busqueda
             dt.search($(this).val()).draw();
             var caracteres = $('.busqueda').val().length;
-            valor = $(this).val().trim();//elimina espacios en blanco
+            var valor = $(this).val().trim();//elimina espacios en blanco
+            var primerChar = $(this).val().charAt(0);
             if (valor == ''){
                $('.tablaDiv').css({'display': 'none'});
                $('#mensaje').css({'display': 'block'});
@@ -39,8 +40,14 @@ $(document).ready(function() {
                   'position': 'fixed',
                   'botton':'0'
                });
-            }
-            else if (caracteres > 2) {
+            } else if (primerChar == ' '){
+               $('.tablaDiv').css({'display': 'none'});
+               $('#mensaje').css({'display': 'block'});
+               $('#footer').css({
+                  'position': 'fixed',
+                  'botton':'0'
+               });
+            } else if (caracteres > 2) {
                $('.tablaDiv').css({'display': 'block'});
                $('#mensaje').css({'display': 'none'});
                var min = 100; var max =455;
@@ -72,8 +79,7 @@ $(document).ready(function() {
             var telefono = respuesta.data[n]['Telefono'];
             var userRol = respuesta.data[n]['Rol'];
             var cohorte = respuesta.data[n]['Cohorte'];
-            var obs = respuesta.data[n]['Observacion'];
-            var observacion = (obs == undefined || obs == null)?'':obs;
+            var observacion = respuesta.data[n]['Observacion'];
             var update = {'arrayN':n,'id':id,'nombre':nombre,'apellido':apellido,
             'certificado':certificado,'email':email,'telefono':telefono,
             'userRol':userRol,'cohorte':cohorte,'observacion':observacion};

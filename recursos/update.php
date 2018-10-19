@@ -10,6 +10,8 @@ $email = mysqli_real_escape_string($con,$_POST['email']);
 $cohorte = mysqli_real_escape_string($con,$_POST['cohorte']);
 $observacion = mysqli_real_escape_string($con,$_POST['observacion']);
 if(($id || $nombre || $apellido || $telefono || $certificado || $rol || $email || $cohorte) != (null || '')) {
+   $sql = 'SET NAMES `utf8`';
+   $query = mysqli_query($con,$sql);
    $sql = 'UPDATE Usuarios_Clc SET `Nombre`="'.$nombre.'", `Apellido`="'.$apellido.'", `Telefono`
    ="'.$telefono.'", `Rol` ="'.$rol.'", `Email`="'.$email.'",`Cohorte`="'.$cohorte.'",
    `Observacion`="'.$observacion.'"  WHERE `ID`='.$id.'';

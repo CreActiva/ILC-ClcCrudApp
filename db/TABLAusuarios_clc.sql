@@ -1,3 +1,18 @@
+USE ilccampu_usuarios;
+DROP TABLE IF EXISTS Usuarios_Clc;
+CREATE TABLE IF NOT EXISTS Usuarios_Clc(
+    ID int NOT NULL AUTO_INCREMENT,
+    Certificado varchar(10) NOT NULL,
+    Apellido varchar(45),
+    Nombre varchar(45),
+    Email varchar(100),
+    Telefono varchar(100),
+    Rol varchar(50),
+    Cohorte varchar(100),
+    Observacion varchar(200),
+    PRIMARY KEY(ID),
+    UNIQUE KEY(ID,Email)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;
 INSERT INTO `Usuarios_Clc` (`ID`, `Certificado`, `Apellido`, `Nombre`, `Email`, `Telefono`, `Rol`, `Cohorte`, `Observacion`) VALUES
 (1, '818', 'Osorio Quero', 'Gabriel Gerardo', '', '', '', 'Margarita Abril Mayo 2013 C-1 I', NULL),
 (2, '819', 'Aranzaens', 'Monica', '', '', '', 'Margarita Abril Mayo 2013 C-1 I', NULL),
@@ -1694,4 +1709,5 @@ INSERT INTO `Usuarios_Clc` (`ID`, `Certificado`, `Apellido`, `Nombre`, `Email`, 
 (1690, '1069', 'Wright', 'MarÃ­a Paz', '', '', '', 'Santiago I 2014 C-9', NULL),
 (1691, '1070', 'Freudenberg', 'Andres', '', '', '', 'Santiago I 2014 C-9', NULL),
 (1692, '1071', 'gutierrez', 'Pedro Enrique', 'pedrogutierrez.s@gmail.com', '', '', 'Santiago I 2014 C-9', NULL),
-(1693, '1072', 'Salinas', 'Paula', 'eduardo.salinasb@gmail.com', '', '', 'Santiago I 2014 C-9', NULL);
+(1693, '1072', 'Salinas', 'Paula', 'eduardo.salinasb@gmail.com', '', '', 'Santiago I 2014 C-9', NULL),
+(1694,'2291', '', '', '', '', '', '', NULL);
